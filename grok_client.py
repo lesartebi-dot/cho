@@ -19,7 +19,7 @@ client = OpenAI(
 # grok-2-1212 - стабильная версия от 12 декабря
 # grok-2-vision-1212 - с поддержкой изображений
 # grok-beta - бета-версия
-MODEL = "grok-2-latest"
+MODEL = "grok-2"
 
 TOOLS = [
     {
