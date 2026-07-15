@@ -1,4 +1,4 @@
-iimport os
+import os
 import json
 from datetime import datetime
 from openai import OpenAI
@@ -8,15 +8,11 @@ from openai import OpenAI
 # ============================================================
 
 client = OpenAI(
-    api_key=os.environ.get("XAI_API_KEY"),  # твой gsk_... ключ
-    base_url="https://api.groq.com/openai/v1"  # Groq эндпоинт
+    api_key=os.environ.get("XAI_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
 )
 
-# Модели Groq (бесплатные):
-# mixtral-8x7b-32768
-# llama3-70b-8192
-# llama3-8b-8192
-# gemma2-9b-it
+# Модели Groq
 MODEL = "mixtral-8x7b-32768"
 
 TOOLS = [
