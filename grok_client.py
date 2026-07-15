@@ -12,8 +12,8 @@ from openai import OpenAI
 GROK_CONSOLE_URL = "https://api.grok-console.com/v1"  # ← ИЗМЕНИТЕ ЭТО
 
 client = OpenAI(
-    api_key=os.environ.get("XAI_API_KEY"),  # ваш gsk_... ключ
-    base_url=GROK_CONSOLE_URL
+    api_key=os.environ.get("XAI_API_KEY"),
+    base_url="https://api.x.ai/v1"  # ← Это правильно для Grok API
 )
 
 # Название вашей модели в Grok Console
