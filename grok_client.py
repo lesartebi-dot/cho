@@ -3,13 +3,23 @@ import json
 from datetime import datetime
 from openai import OpenAI
 
-# Grok API полностью совместим с форматом OpenAI — меняем только base_url и ключ
+# ============================================================
+# Grok API через console.x.ai
+# API-ключ: gsk_...
+# Документация: https://docs.x.ai/api
+# ============================================================
+
 client = OpenAI(
-    api_key=os.environ["XAI_API_KEY"],
+    api_key=os.environ["XAI_API_KEY"],  # ключ вида gsk_...
     base_url="https://api.x.ai/v1"
 )
 
-MODEL = "grok-4.5"
+# Модели Grok API:
+# grok-2-latest - последняя версия
+# grok-2-1212 - стабильная версия от 12 декабря
+# grok-2-vision-1212 - с поддержкой изображений
+# grok-beta - бета-версия
+MODEL = "grok-2-latest"
 
 TOOLS = [
     {
@@ -155,12 +165,20 @@ def ask_grok(config: dict, history: list, user_message: str):
         + [{"role": "user", "content": user_message}]
     )
 
-    response = client.chat.completions.create(
-        model=MODEL,
-        max_tokens=800,
-        tools=TOOLS,
-        messages=messages
-    )
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            max_tokens=800,
+            tools=TOOLS,
+            tool_choice="auto",  # Grok сам решит, вызывать ли тулы
+            messages=messages
+        )
+    except Exception as e:
+        # Детальное логирование ошибки
+        print(f"Grok API error: {e}")
+        if hasattr(e, 'response'):
+            print(f"Response: {e.response.text}")
+        raise
 
     msg = response.choices[0].message
     reply_text = msg.content or ""
