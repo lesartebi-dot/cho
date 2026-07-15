@@ -4,22 +4,32 @@ from datetime import datetime
 from openai import OpenAI
 
 # ============================================================
-# Grok API через console.x.ai
-# API-ключ: gsk_...
-# Документация: https://docs.x.ai/api
+# GROK CONSOLE - ваш собственный сервис
 # ============================================================
 
+# Если вы не знаете точный URL, спросите у того, кто
+# развернул вашу Grok Console
+GROK_CONSOLE_URL = "https://api.grok-console.com/v1"  # ← ИЗМЕНИТЕ ЭТО
+
 client = OpenAI(
-    api_key=os.environ["XAI_API_KEY"],  # ключ вида gsk_...
-    base_url="https://api.x.ai/v1"
+    api_key=os.environ.get("XAI_API_KEY"),  # ваш gsk_... ключ
+    base_url=GROK_CONSOLE_URL
 )
 
-# Модели Grok API:
-# grok-2-latest - последняя версия
-# grok-2-1212 - стабильная версия от 12 декабря
+# Название вашей модели в Grok Console
+MODEL = "grok-4.3"  # или "grok-3", "grok", "grok-console"
+
+# ... остальной код без изменений ...
 # grok-2-vision-1212 - с поддержкой изображений
 # grok-beta - бета-версия
-MODEL = "grok-2"
+# grok_client.py
+
+# ... остальной код ...
+
+# Актуальное название модели. Используйте "grok-4.3" или "grok-4-code-0629"
+ # <-- ИЗМЕНИТЕ ЭТУ СТРОКУ
+
+# ... остальной код ...
 
 TOOLS = [
     {
