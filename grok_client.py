@@ -13,7 +13,13 @@ client = OpenAI(
 )
 
 # Модели Groq
-MODEL = "mixtral-8x7b-32768"
+MODEL = "llama-3.3-70b-versatile"  # самая мощная бесплатная
+# или
+MODEL = "llama-3.1-8b-instant"     # быстрая и легкая
+# или
+MODEL = "gemma2-9b-it"             # от Google
+# или
+MODEL = "llama-3.2-3b-preview"     # маленькая, быстрая
 
 TOOLS = [
     {
